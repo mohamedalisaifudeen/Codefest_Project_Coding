@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+    {% block head %}
+    {{super()}}
+    <style>
+
+body {
+  background-image: url('../static/vecteezy_.jpg');
+  background-size: cover;
+  height:64rem;
+  background-repeat: no-repeat;
+
+}
+#footer{color:#FFF;}
+.fa-headset{margin-left:0;}
+
+
+    </style>
+    {% endblock head %}
+
+
+<body>
+{% block content %}
+<div class="img-quiz">
+    <img class='img-quiz' src="../static/unnamed.png">
+</div>
+<div class="card sign_card" style="width: 18rem; height:25rem;">
+    <div class="card-body">
+        <h5 class="card-title signup">Log In</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Dont have an account? <a href="{{url_for('signup_page')}}">Sign Up</a></h6>
+        {{ wtf.quick_form(form2,button_map={'submit':'primary'}) }}
+        </div>
+    </div>
+         <section id="footer">
+
+    <i class="fa-brands fa-facebook-f fa-2x  aaai"></i> <i class="fa-solid fa-envelope fa-2x aaai"></i> <i class="fa-solid fa-headset fa-2x aaai"></i>
+
+    <p class="aa"><i class="fa-regular fa-copyright"></i> Copyright 2022</p><br>
+
+</section>
+        {% endblock content %}
+
+
+
+</body>
+</html>

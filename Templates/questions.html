@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+{{ super() }}
+<style xmlns="http://www.w3.org/1999/html">
+#Navigation,body {background-image:none;
+                           background-color:#F7ECDE;}
+
+.quesion-card{background-color:#9ED2C6;}
+.mb-2{padding-top:83px;
+      padding-bottom:30px;}
+.btn-primary{margin-left:30rem;
+             width:50%}
+
+
+</style>
+{% endblock head %}
+
+{% block content %}
+
+{% block navigation %}
+{{ super() }}
+{% endblock navigation %}
+
+{% endblock content %}
+{% block other %}
+{% set eee=catt|length%}
+{% for item in range(eee) %}
+<div class="card quesion-card" style="width: 55rem;">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{catt[item].question}}</h6>
+
+        <form method='post' action="{{url_for('score_page')}}">
+
+            <input type="checkbox" name="{{item}}" value="{{q_a[item][0]}}">{{q_a[item][0]}}
+            <input type="checkbox" name="{{item}}" value="{{q_a[item][1]}}">{{q_a[item][1]}}
+            <input type="checkbox" name="{{item}}" value="{{q_a[item][2]}}">{{q_a[item][2]}}
+            <input type="checkbox" name="{{item}}" value="{{q_a[item][3]}}">{{q_a[item][3]}}
+
+
+
+
+    </div>
+
+</div>
+{% endfor %}
+<input type="submit" class="btn btn-lg btn-primary" name="sub" value="Submit" href="{{url_for('score_page')}}">
+</form>
+
+{% endblock other %}
+</body>
+</html>

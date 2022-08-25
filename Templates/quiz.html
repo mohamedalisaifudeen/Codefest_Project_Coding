@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+{{ super() }}
+<style>
+#Navigation{background-image:url("../static/580.jpg")}
+
+</style>
+{% endblock head %}
+<body>
+
+{% block content %}
+{% block navigation %}
+{{ super() }}
+<section id="qui-website">
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-12 quizzz">
+                <h1 class="abcc">Try Out The Quizzes</h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock navigation%}
+{% endblock content %}
+
+{% block other %}
+
+
+
+<div class="row ">
+{% for item in cateo %}
+    <div class="col-lg-4">
+
+        <div class="card quiiiz" style="width: 18rem;">
+            <img src="../static/pic.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{item}}</h5>
+
+                <p class="card-text">{{cateo[item]}}</p>
+                <a href="{{url_for('questions_page',catogery=item)}}" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock other %}
+
+
+</body>
+</html>

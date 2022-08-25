@@ -1,0 +1,135 @@
+.navbar
+{
+    padding-top: 5rem;  padding-right: 16rem; padding-left: 6rem;
+}
+.nav-item
+{
+    font-family: 'Ubuntu';  margin-left: 1rem;
+}
+#Navigation
+{
+    background-image: url('online.jpg');  background-size: cover;
+}
+.col-lg-6
+{
+    text-align: left;
+}
+h1
+{
+    font-family: 'Montserrat';  line-height: 4rem;
+ padding-top: 12rem;  padding-left: 6rem;
+}
+.navbar-brand
+{
+    font-family: 'Montserrat';  font-size: 2rem;
+}
+.buttonseco
+{ margin-right: 3rem;
+    margin-left: 6rem;
+}
+.btn
+{ font-family: 'Ubuntu';;
+
+    width: 10rem;  margin-top: 4rem;  margin-bottom: 4rem;
+}
+.trust
+{
+    text-align: center;  color: gray;
+}
+
+img
+{ width: 23rem;
+    height: 111px;
+}
+.iico
+{
+    font-family: 'Ubuntu';  color: gray; font-size:1.5rem; padding-top:3rem;
+}
+.goo
+{
+    padding-left: 2rem;
+}
+.image
+{ margin-top: 5rem;
+
+    text-align: center;
+}
+#Quizzes
+{ margin-top: 192px;
+
+    background-color: #cba0ae;
+}
+.card
+{ height: 31rem;  margin-bottom: 8rem;
+;
+    margin-left: 10rem;
+}
+.qui
+{
+    padding-top: 93px;  padding-bottom: 93px;  text-align: center;  color: #fff;
+}
+.card-img-top
+{
+    height: 14rem;
+}
+h5
+{
+    padding-top: 16px;
+}
+p
+{
+    padding-top: 17px;
+}
+.qubt
+{
+    margin-top: 35px;
+}
+.icon
+{ margin-top: 10rem;  margin-bottom: 10rem;;
+
+    text-align: center;
+}
+.fa-6x
+{
+    color: #e4d192;
+}
+
+#openion{background-color: #cba0ae;
+         text-align: center;
+         color: #FFF}
+.con{padding-bottom:192px}
+#footer{text-align: center;
+        padding-top: 2rem;}
+.aa{font-family: "Ubuntu";
+    margin-bottom: 0}
+.aaai{margin-right:32px;
+      margin-left:32px;
+      margin-top:3rem;
+     margin-bottom:1rem;}
+
+.sign_card{margin:auto;
+           margin-top:65px;}
+#username,#name{margin-bottom:36px;}
+.signup {margin-bottom:19px;}
+#submit{margin-top:46px;
+        width:246px;}
+.img-quiz{width:200px;
+          height:200px;
+          margin:auto;
+          margin-top:70px;}
+#email{margin-bottom:29px;}
+.abcc{margin-bottom:11rem;
+      text-align:center;
+      font-family:"Montserrat";}
+
+.quiiiz{margin-top:6rem;}
+.quesion-card{background-color:red;
+             width: 55rem;
+             height: 21rem;
+             margin: auto;
+             border-radius: 7rem;
+             text-align:center;
+             margin-top:13rem;}
+
+{
+
