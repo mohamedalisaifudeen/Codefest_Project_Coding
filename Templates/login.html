@@ -23,12 +23,17 @@ body {
 <body>
 {% block content %}
 <div class="img-quiz">
-    <img class='img-quiz' src="../static/unnamed.png">
+    <a href="{{url_for('home_page')}}"><img class='img-quiz' src="../static/unnamed.png"></a>
 </div>
-<div class="card sign_card" style="width: 18rem; height:25rem;">
+<div class="card sign_card" style="width: 18rem; height:27rem;">
     <div class="card-body">
         <h5 class="card-title signup">Log In</h5>
         <h6 class="card-subtitle mb-2 text-muted">Dont have an account? <a href="{{url_for('signup_page')}}">Sign Up</a></h6>
+        {% with messages= get_flashed_messages() %}
+        {% for message in messages %}
+            <p id="log">{{message}}</p>
+        {% endfor %}
+        {% endwith %}
         {{ wtf.quick_form(form2,button_map={'submit':'primary'}) }}
         </div>
     </div>

@@ -19,41 +19,18 @@
 <section id="Quizzes">
     <div class="row">
         <h1 class='qui'>Some Quizzes To Try</h1>
+        {% for item in data1[:3]%}
         <div class="col-lg-4">
             <div class="card" style="width: 18rem;">
                 <img src="../static/quiz.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-dark qubt">Go somewhere</a>
+                    <h5 class="card-title">{{item.category}}</h5>
+                    <p class="card-text">Do you think that you have a good general knowledge try this quiz</p>
+                    <a href="{{url_for('questions_page',catogery=item.category)}}" class="btn btn-dark qubt">Try It Out</a>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/quiz.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-dark qubt">Go somewhere</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-4">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/quiz.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-dark qubt">Go somewhere</a>
-                </div>
-            </div>
-
-        </div>
+        {% endfor%}
     </div>
 
 </section>

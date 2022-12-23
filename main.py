@@ -1,4 +1,5 @@
-from flask import Flask,render_template,redirect,url_for,request
+from flask import Flask, render_template, redirect, url_for, request, flash, abort
+from flask_admin.contrib import sqla
 from flask_bootstrap import Bootstrap
 from forms import sign_up,login
 from flask_sqlalchemy import SQLAlchemy
@@ -7,6 +8,8 @@ from flask_mail import Mail,Message
 from flask_login import LoginManager,login_user,UserMixin,login_required
 import requests
 import random
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 
 app=Flask(__name__)
@@ -15,6 +18,10 @@ Bootstrap(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///quiz.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
+
+app.config['FLASK_ADMIN_SWATCH']='cerulean'
+admin=Admin(app,name="Edits")
+
 
 
 
@@ -30,24 +37,47 @@ login_manager=LoginManager()
 login_manager.init_app(app)
 
 
+db=SQLAlchemy(app)
+
+user_relation=db.Table('user_relation',
+                             db.Column('user_id',db.Integer,db.ForeignKey('user.id')),
+                             db.Column('questions_id',db.Integer,db.ForeignKey('questions.id')),
+)
+
+class User(db.Model,UserMixin):
+    __tablename__='user'
+    id=db.Column(db.Integer,primary_key=True,unique=True)
+    email=db.Column(db.String(250))
+    name=db.Column(db.String(200))
+    password=db.Column(db.String(250))
+    following=db.relationship('Questions',secondary=user_relation,backref='add')
+    def __repr__(self):
+        return f"<User:{self.name}>"
 
 
-database=SQLAlchemy(app)
+class Questions(db.Model):
+    __Tablename__='questions'
+    id=db.Column(db.Integer,primary_key=True,unique=True)
+    category=db.Column(db.String(200))
+    question=db.Column(db.String(200))
+    correct_ans=db.Column(db.String(200))
+    incorrect=db.Column(db.String(200))
+    def __repr__(self):
+        return f"<Questions:{self.category}>"
 
-class User(database.Model,UserMixin):
-    id=database.Column(database.Integer,primary_key=True,unique=True)
-    email=database.Column(database.String(250))
-    name=database.Column(database.String(200))
-    password=database.Column(database.String(250))
-database.create_all()
 
-class Questions(database.Model):
-    id=database.Column(database.Integer,primary_key=True,unique=True)
-    category=database.Column(database.String(200))
-    question=database.Column(database.String(200))
-    correct_ans=database.Column(database.String(200))
-    incorrect=database.Column(database.String(200))
-database.create_all()
+#class SecureModelView(ModelView):
+#    def is_accessible(self):
+#        return User.current_user.is_authenticated
+#
+#    def inaccessible_callback(self, name, **kwargs):
+#        return redirect(url_for('login_page'))
+#
+
+
+admin.add_view(SecureModelView(Questions,db.session))
+
+
 
 #for item in range(9,28):
 #    parameters = {'amount': 50,
@@ -67,8 +97,9 @@ def load_user(user_id):
 
 @app.route("/")
 def home_page():
+    data=Questions.query.all()
 
-    return render_template("index.html")
+    return render_template("index.html",data1=data)
 
 
 @app.route("/SignUp",methods=['Post','Get'])
@@ -76,8 +107,8 @@ def signup_page():
     form=sign_up()
     if(form.validate_on_submit()):
         user=User(email=form.username.data,name=form.name.data,password=generate_password_hash(form.password.data,method='pbkdf2:sha256',salt_length=8))
-        database.session.add(user)
-        database.session.commit()
+        db.session.add(user)
+        db.session.commit()
         msg = Message( sender='mohamedalisaifudeen1@yahoo.com', recipients=[form.username.data])
         msg.html="<img src='static/vecteezy_.jpg'> <br><hr><h2>Thank you for choosing our website and signing up for it </h2>"
         mail.send(msg)
@@ -93,7 +124,15 @@ def login_page():
         if(check_password_hash(current_user.password,form4.password.data)):
             login_user(current_user)
             return redirect(url_for("home_page"))
-    return render_template("login.html",form2=form4)
+        else:
+            flash("*Wrong Password")
+            return render_template("login.html", form2=form4)
+
+    else:
+        flash("*Wrong Email")
+        return render_template("login.html", form2=form4)
+
+
 
 @app.route("/Quizzes")
 def quiz_page():

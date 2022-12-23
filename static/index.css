@@ -80,6 +80,8 @@ p
 {
     padding-top: 17px;
 }
+#log{color:red;}
+#submit {margin-top:31px;}
 .qubt
 {
     margin-top: 35px;
@@ -108,7 +110,8 @@ p
      margin-bottom:1rem;}
 
 .sign_card{margin:auto;
-           margin-top:65px;}
+           margin-top:65px;
+          }
 #username,#name{margin-bottom:36px;}
 .signup {margin-bottom:19px;}
 #submit{margin-top:46px;
